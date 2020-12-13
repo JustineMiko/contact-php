@@ -11,29 +11,29 @@
     <form action="" method="post" novalidate>
         <div class="form-group">
             {% if errors.email is defined %}
-            <div class="error">
+            <div class="error is-invalid">
                 {{ errors.email }}
             </div>
             {% endif %}
             <div class="form-group">
-                <input type="email" class="form-control" name="email" placeholder="email" value="{{ formData.email }}" required>
+                <input type="email" class="form-control is-valid" name="email" placeholder="email" value="{{ formData.email }}" required>
             </div>
             {% if errors.subject is defined %}
-                <div class="error">
+                <div class="error is-invalid">
                     {{ errors.subject }}
                 </div>
             {% endif %}
             <div>
-                <input type="text" name="subject" placeholder="subject" value="{{ formData.subject }}" required>
+                <input type="text" name="subject"  class="is-valid" placeholder="subject" value="{{ formData.subject }}" required>
             </div>
             {% if errors.message is defined %}
-                <div class="error"}
+                <div class="error is-invalid"}
                     {{ errors.message }}
                 </div>
             {% endif %}
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Message</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="votre message" rows="3"></textarea>
+                    <textarea class="form-control is-valid" id="exampleFormControlTextarea1" placeholder="votre message" rows="3"></textarea>
                 </div>
             <div>
                 <button type="submit" class="btn btn-primary mb-2">Send</button>
