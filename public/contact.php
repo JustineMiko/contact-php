@@ -4,10 +4,10 @@ use Twig\Environment;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
 
-require __DIR__.'/vendor/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
 // instanciation du chargeur de templates
-$loader = new FilesystemLoader(__DIR__.'/templates');
+$loader = new FilesystemLoader(__DIR__.'/../templates');
 
 // instanciation du moteur de template
 $twig = new Environment($loader, [
@@ -65,14 +65,15 @@ if ($_POST) {
     if (empty($_Post['message'])) {
         //le champ est-il vide ? 
         $errors['message'] = 'Vous devez entrer un message';
-    } elseif (strlen($_POST['message'] < $minLength || strlen($_POST['message']) > $maxLengthText) {
+    } elseif (strlen($_POST['message']) < $minLength || strlen($_POST['message']) > $maxLengthText) {
     // la longueur du message est-elle comprise entre 3 et 1000 caractères ?
-        $errors['message'] = "Votre message doit comprendre entre {$minLength} et {$maxLengthText} caractères"
+        $errors['message'] = "Votre message doit comprendre entre {$minLength} et {$maxLengthText} caractères";
     }
 
-
-// affichage du rendu d'un template qui me donne une erreur de synthaxe et je ne sais pas pourquoi
+// affichage du rendu d'un template 
 echo $twig->render('contact.html.twig', [
     'errors' => $errors,
     'formData' => $formData,
 ]);
+
+
