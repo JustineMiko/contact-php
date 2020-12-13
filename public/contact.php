@@ -1,7 +1,5 @@
-
 <?php
 
-use \DateTime;
 use Twig\Environment;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
@@ -28,6 +26,7 @@ $formData = [
     'subject' => '',
     'message' => '',
 ];
+
 $errors = [];
 
 if ($_POST) {
@@ -36,6 +35,7 @@ if ($_POST) {
             $formData[$key] = $_POST[$key];
         }
     }
+}
 
     $minLength = 3;
     $maxLength = 190;
@@ -60,7 +60,7 @@ if ($_POST) {
         // le login est-il composé exclusivement de lettres de a à z, majuscules ou mnisucules ?
         $errors['subject'] = 'merci de renseigner un objet composé uniquement de lettres de l\'alphabet sans accent';
     }
-
+    
 //champ message:
     if (empty($_Post['message'])) {
         //le champ est-il vide ? 
@@ -71,17 +71,8 @@ if ($_POST) {
     }
 
 
-    // si il n'y a pas d'erreur, on redirige l'utilisateur vers la page d'accueil
-    if (!$errors) {
-        $url = '/';
-        header("Location: {$url}", true, 302);
-        exit();
-    }
-}
-
-// affichage du rendu d'un template
+// affichage du rendu d'un template qui me donne une erreur de synthaxe et je ne sais pas pourquoi
 echo $twig->render('contact.html.twig', [
-    // transmission de données au template
     'errors' => $errors,
     'formData' => $formData,
 ]);
